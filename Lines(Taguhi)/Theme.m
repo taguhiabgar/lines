@@ -10,23 +10,25 @@
 
 @implementation Theme
 
-- (instancetype) init
-{
+- (instancetype) init {
     self = [super init];
-    if (self != nil)
-    {
-        self.ballBackgroundImageNamesArray = [[NSMutableArray alloc] init];
+    if (self != nil) {
+        self.ballImageNamesArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (void)setValuesWithCellBackgroundImageName:(NSString*)cellBackgroundImage andMainViewBackgroundImageName:(NSString*)mainViewBackgroundImage andThemeTitle:(NSString*)title andTextsColor:(UIColor*)textColor andButtonsBackgroundColor:(UIColor*)buttonBackgroundColor
-{
-    [self setCellBackgroundImageName:cellBackgroundImage];
-    [self setMainViewBackgroundImageName:mainViewBackgroundImage];
-    [self setThemeTitle:title];
+- (void)setValuesBackgroundImageName:(NSString*)mainViewBackgroundImage
+                       cellImageName:(NSString*)cellBackgroundImage
+                          themeTitle:(NSString*)title
+                          textsColor:(UIColor*)textColor
+              buttonsBackgroundColor:(UIColor*)buttonBackgroundColor {
+    
+    [self setCellImageName:cellBackgroundImage];
+    [self setBackgroundImageName:mainViewBackgroundImage];
+    [self setTitle:title];
     [self setTextsColor:textColor];
-    [self setButtonsBackgroundColor:buttonBackgroundColor];
+    [self setButtonsColor:buttonBackgroundColor];
 }
 
 @end

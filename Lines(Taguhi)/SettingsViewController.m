@@ -59,9 +59,9 @@
         // set frame of current themeButton
         themeButton.frame = CGRectMake(settingsViewControllerFreeSpaceFromLeft + currentThemeIndex * (themeButtonsWidth + settingsViewControllerFreeSpaceBetweenThemeButtons), self.themesTextLabel.frame.origin.y + self.themesTextLabel.frame.size.height + settingsViewControllerFreeSpaceBetweenIncreaseDecreaseButtons + settingsViewControllerFreeSpaceVertically, themeButtonsWidth, themeButtonsHeight);
         // set title of current themeButton
-        [themeButton setTitle:[[[[ThemeManager sharedThemeManager] arrayOfThemes] objectAtIndex:currentThemeIndex] themeTitle] forState:UIControlStateNormal];
+        [themeButton setTitle:[[[[ThemeManager sharedThemeManager] arrayOfThemes] objectAtIndex:currentThemeIndex] title] forState:UIControlStateNormal];
         // set background color of current themeButton
-        [themeButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:settingsViewControllerLabelsBackgroundColorAlphaComponent]];
+        [themeButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:settingsViewControllerLabelsBackgroundColorAlphaComponent]];
         // set corner radius of current themeButton
         [[themeButton layer] setCornerRadius:settingsViewControllerButtonsCornerRadius];
         // set title color of current themeButton
@@ -86,7 +86,7 @@
     // set corner radius of themesTextLabel
     [[self.themesTextLabel layer] setCornerRadius:settingsViewControllerLabelsCornerRadius];
     // set background color of label with alpha component
-    [self.themesTextLabel setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
+    [self.themesTextLabel setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
     // set text of themesTextLabel
     [self.themesTextLabel setText:settingsViewControllerThemesTextLabelText];
     // set text color of rowsTextLabel
@@ -99,42 +99,42 @@
 
 - (void)increaseRowsButtonAction:sender
 {
-    if ([[BoardManager sharedBoardManager] amountOfRows] < amountOfRowsHighestValue){
+    if ([[BoardManager sharedBoardManager] rows] < amountOfRowsHighestValue){
         // increase amount of rows in shared manager
-        [[BoardManager sharedBoardManager] setAmountOfRows:[[BoardManager sharedBoardManager] amountOfRows] + increaseAbsoluteValue];
+        [[BoardManager sharedBoardManager] setRows:[[BoardManager sharedBoardManager] rows] + increaseAbsoluteValue];
         // set text of rowsTextLabel
-        NSString* rowsTextLabelText = [settingsViewControllerRowsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] amountOfRows]]];
+        NSString* rowsTextLabelText = [settingsViewControllerRowsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] rows]]];
         [self.rowsTextLabel setText:rowsTextLabelText];
     }
 }
 
 - (void)decreaseRowsButtonAction:sender
 {
-    if ([[BoardManager sharedBoardManager] amountOfRows] > amountOfRowsLowestValue){
+    if ([[BoardManager sharedBoardManager] rows] > amountOfRowsLowestValue){
         // decrease amount of rows in shared manager
-        [[BoardManager sharedBoardManager] setAmountOfRows:[[BoardManager sharedBoardManager] amountOfRows] - decreaseAbsoluteValue];
+        [[BoardManager sharedBoardManager] setRows:[[BoardManager sharedBoardManager] rows] - decreaseAbsoluteValue];
         // set text of rowsTextLabel
-        NSString* rowsTextLabelText = [settingsViewControllerRowsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] amountOfRows]]];
+        NSString* rowsTextLabelText = [settingsViewControllerRowsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] rows]]];
         [self.rowsTextLabel setText:rowsTextLabelText];
     }
 }
 
 - (void)increaseFieldsButtonAction:sender{
-    if ([[BoardManager sharedBoardManager] amountOfFields] < amountOfFieldsHighestValue){
+    if ([[BoardManager sharedBoardManager] cols] < amountOfFieldsHighestValue){
         // increase amount of fields in shared manager
-        [[BoardManager sharedBoardManager] setAmountOfFields:[[BoardManager sharedBoardManager] amountOfFields] + increaseAbsoluteValue];
+        [[BoardManager sharedBoardManager] setCols:[[BoardManager sharedBoardManager] cols] + increaseAbsoluteValue];
         // set text of fieldsTextLabel
-        NSString* fieldsTextLabelText = [settingsViewControllerFieldsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] amountOfFields]]];
+        NSString* fieldsTextLabelText = [settingsViewControllerFieldsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] cols]]];
         [self.fieldsTextLabel setText:fieldsTextLabelText];
     }
 }
 
 - (void)decreaseFieldsButtonAction:sender{
-    if ([[BoardManager sharedBoardManager] amountOfFields] > amountOfFieldsLowestValue){
+    if ([[BoardManager sharedBoardManager] cols] > amountOfFieldsLowestValue){
         // decrease amount of fields in shared manager
-        [[BoardManager sharedBoardManager] setAmountOfFields:[[BoardManager sharedBoardManager] amountOfFields] - decreaseAbsoluteValue];
+        [[BoardManager sharedBoardManager] setCols:[[BoardManager sharedBoardManager] cols] - decreaseAbsoluteValue];
         // set text of fieldsTextLabel
-        NSString* fieldsTextLabelText = [settingsViewControllerFieldsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] amountOfFields]]];
+        NSString* fieldsTextLabelText = [settingsViewControllerFieldsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] cols]]];
         [self.fieldsTextLabel setText:fieldsTextLabelText];
     }
 }
@@ -145,9 +145,9 @@
     // set corner radius of rowsTextLabel
     [[self.rowsTextLabel layer] setCornerRadius:settingsViewControllerLabelsCornerRadius];
     // set background color of label with alpha component
-    [self.rowsTextLabel setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
+    [self.rowsTextLabel setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
     // set text of rowsTextLabel
-    NSString* rowsTextLabelText = [settingsViewControllerRowsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] amountOfRows]]];
+    NSString* rowsTextLabelText = [settingsViewControllerRowsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] rows]]];
     [self.rowsTextLabel setText:rowsTextLabelText];
     // set text color of rowsTextLabel
     [self.rowsTextLabel setTextColor:[[[ThemeManager sharedThemeManager] currentTheme] textsColor]];
@@ -161,7 +161,7 @@
     // set corner radius of increaseRowsButton
     [[self.increaseRowsButton layer] setCornerRadius:settingsViewControllerLabelsCornerRadius];
     // set background color with alpha component of increaseRowsButton
-    [self.increaseRowsButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
+    [self.increaseRowsButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
     // set title of increaseRowsButton
     [self.increaseRowsButton setTitle:settingsViewControllerIncreaseButtonsTitleString forState:UIControlStateNormal];
     // set title color of increaseRowsButton
@@ -178,7 +178,7 @@
     // set corner radius of decreaseRowsButton
     [[self.decreaseRowsButton layer] setCornerRadius:settingsViewControllerLabelsCornerRadius];
     // set background color with alpha component of decreaseRowsButton
-    [self.decreaseRowsButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
+    [self.decreaseRowsButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
     // set title of decreaseRowsButton
     [self.decreaseRowsButton setTitle:settingsViewControllerDecreaseButtonsTitleString forState:UIControlStateNormal];
     // set title color of decreaseRowsButton
@@ -195,9 +195,9 @@
     // set corner radius of fieldsTextLabel
     [[self.fieldsTextLabel layer] setCornerRadius:settingsViewControllerLabelsCornerRadius];
     // set background color of label with alpha component
-    [self.fieldsTextLabel setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
+    [self.fieldsTextLabel setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
     // set text of fieldsTextLabel
-    NSString* fieldsTextLabelText = [settingsViewControllerFieldsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] amountOfFields]]];
+    NSString* fieldsTextLabelText = [settingsViewControllerFieldsLabelText stringByAppendingString:[NSString stringWithFormat:@"%lu", (unsigned long)[[BoardManager sharedBoardManager] cols]]];
     [self.fieldsTextLabel setText:fieldsTextLabelText];
     // set text color of fieldsTextLabel
     [self.fieldsTextLabel setTextColor:[[[ThemeManager sharedThemeManager] currentTheme] textsColor]];
@@ -211,7 +211,7 @@
     // set corner radius of increaseFieldsButton
     [[self.increaseFieldsButton layer] setCornerRadius:settingsViewControllerLabelsCornerRadius];
     // set background color with alpha component of increaseFieldsButton
-    [self.increaseFieldsButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
+    [self.increaseFieldsButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
     // set title of increaseFieldsButton
     [self.increaseFieldsButton setTitle:settingsViewControllerIncreaseButtonsTitleString forState:UIControlStateNormal];
     // set title color of increaseFieldsButton
@@ -228,7 +228,7 @@
     // set corner radius of decreaseFieldsButton
     [[self.decreaseFieldsButton layer] setCornerRadius:settingsViewControllerLabelsCornerRadius];
     // set background color with alpha component of decreaseFieldsButton
-    [self.decreaseFieldsButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
+    [self.decreaseFieldsButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:settingsViewControllerButtonsBackgroundColorAlphaComponent]];
     // set title of decreaseFieldsButton
     [self.decreaseFieldsButton setTitle:settingsViewControllerDecreaseButtonsTitleString forState:UIControlStateNormal];
     // set title color of decreaseFieldsButton
@@ -247,7 +247,7 @@
     // initialize backgroundImageView
     self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
     // set background image of main view
-    [self.backgroundImageView setImage:[UIImage imageNamed:[[[ThemeManager sharedThemeManager] currentTheme] mainViewBackgroundImageName]]];
+    [self.backgroundImageView setImage:[UIImage imageNamed:[[[ThemeManager sharedThemeManager] currentTheme] backgroundImageName]]];
     // add backgroundImageView to main view
     [self.view addSubview:self.backgroundImageView];
 }

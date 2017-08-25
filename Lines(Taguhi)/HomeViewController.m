@@ -53,7 +53,7 @@
     // initialize backgroundImageView
     self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
     // set background image of main view
-    [self.backgroundImageView setImage:[UIImage imageNamed:[[[ThemeManager sharedThemeManager] currentTheme] mainViewBackgroundImageName]]];
+    [self.backgroundImageView setImage:[UIImage imageNamed:[[[ThemeManager sharedThemeManager] currentTheme] backgroundImageName]]];
     // add backgroundImageView to main view
     [self.view addSubview:self.backgroundImageView];
 }
@@ -70,7 +70,7 @@
     // set corner radius of playButton
     [[self.playButton layer] setCornerRadius:homeViewControllerButtonsCornerRadius];
     // set playButton background color with alpha component
-    [self.playButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:homeViewControllerButtonsBackgroundColorAlphaComponent]];
+    [self.playButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:homeViewControllerButtonsBackgroundColorAlphaComponent]];
     // set playButton title color
     [self.playButton setTitleColor:[[[ThemeManager sharedThemeManager] currentTheme] textsColor] forState:UIControlStateNormal];
     //add playButton to main view
@@ -89,7 +89,7 @@
     // set corner radius of settingsButton
     [[self.settingsButton layer] setCornerRadius:homeViewControllerButtonsCornerRadius];
     // set settingsButton background color with alpha component
-    [self.settingsButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:homeViewControllerButtonsBackgroundColorAlphaComponent]];
+    [self.settingsButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:homeViewControllerButtonsBackgroundColorAlphaComponent]];
     // set settingsButton title color
     [self.settingsButton setTitleColor:[[[ThemeManager sharedThemeManager] currentTheme] textsColor] forState:UIControlStateNormal];
     //add settingsButton to main view
@@ -108,7 +108,7 @@
     // set corner radius of hallOfFameButton
     [[self.hallOfFameButton layer] setCornerRadius:homeViewControllerButtonsCornerRadius];
     // set hallOfFameButton background color with alpha component
-    [self.hallOfFameButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:homeViewControllerButtonsBackgroundColorAlphaComponent]];
+    [self.hallOfFameButton setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:homeViewControllerButtonsBackgroundColorAlphaComponent]];
     // set hallOfFameButton title color
     [self.hallOfFameButton setTitleColor:[[[ThemeManager sharedThemeManager] currentTheme] textsColor] forState:UIControlStateNormal];
     //add hallOfFameButton to main view

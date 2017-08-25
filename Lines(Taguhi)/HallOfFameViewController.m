@@ -49,7 +49,7 @@
     // set text color
     [self.scoreLabel setTextColor:[[[ThemeManager sharedThemeManager] currentTheme] textsColor]];
     // set background color with alpha component
-    [self.scoreLabel setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsBackgroundColor] colorWithAlphaComponent:hallOfFameViewControllerScoreLabelBackgroundColorAlphaComponent]];
+    [self.scoreLabel setBackgroundColor:[[[[ThemeManager sharedThemeManager] currentTheme] buttonsColor] colorWithAlphaComponent:hallOfFameViewControllerScoreLabelBackgroundColorAlphaComponent]];
     // set font size of scoreLabel
     [self.scoreLabel setFont:[self.scoreLabel.font fontWithSize:hallOfFameViewControllerScoreLabelTextFontSize]];
     // add scoreLabel to main view
@@ -60,7 +60,7 @@
     // initialize backgroundImageView
     self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
     // set background image of main view
-    [self.backgroundImageView setImage:[UIImage imageNamed:[[[ThemeManager sharedThemeManager] currentTheme] mainViewBackgroundImageName]]];    
+    [self.backgroundImageView setImage:[UIImage imageNamed:[[[ThemeManager sharedThemeManager] currentTheme] backgroundImageName]]];
     // add backgroundImageView to main view
     [self.view addSubview:self.backgroundImageView];
 }

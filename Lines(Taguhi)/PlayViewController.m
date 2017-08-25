@@ -69,9 +69,9 @@ static CGFloat delay = 0.01;
     CGRect ballFrame = CGRectMake(boardOrigin.x + origin.y * (self.cellViewWidth + self.freeSpaceBetweenCells), boardOrigin.y + origin.x * (self.cellViewHeight + self.freeSpaceBetweenCells), self.cellViewWidth, self.cellViewHeight);
     UIImageView* ballImageView = [[UIImageView alloc] initWithFrame:ballFrame];
     // set image of ball
-    [ballImageView setImage:[UIImage imageNamed:[[[[ThemeManager sharedThemeManager] currentTheme] ballBackgroundImageNamesArray] objectAtIndex:colorIndex]]];
+    [ballImageView setImage:[UIImage imageNamed:[[[[ThemeManager sharedThemeManager] currentTheme] ballImageNamesArray] objectAtIndex:colorIndex]]];
     // set tag
-    [ballImageView setTag:(origin.x * [[BoardManager sharedBoardManager] amountOfFields] + origin.y)];
+    [ballImageView setTag:(origin.x * [[BoardManager sharedBoardManager] cols] + origin.y)];
     // create tap gesture recognizer
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ballImageViewAction:)];
     // enable user interaction
@@ -96,7 +96,7 @@ static CGFloat delay = 0.01;
         [self showGameResultViewController];
     }
     NSMutableArray* arrayOfFirstBalls = [[NSMutableArray alloc] init];
-    arrayOfFirstBalls = [[BoardManager sharedBoardManager] arrayOfFirstBallsWithAmountOfBalls:[[[[ThemeManager sharedThemeManager] currentTheme] ballBackgroundImageNamesArray] count]];
+    arrayOfFirstBalls = [[BoardManager sharedBoardManager] arrayOfFirstBallsWithAmountOfBalls:[[[[ThemeManager sharedThemeManager] currentTheme] ballImageNamesArray] count]];
     for (NSInteger index = 0; index < [arrayOfFirstBalls count]; index++) {
         Ball* ball = [arrayOfFirstBalls objectAtIndex:index];
         // draw ball on main view
@@ -119,24 +119,24 @@ static CGFloat delay = 0.01;
     self.boardViewXCoordinate = playViewControllerFreeSpaceFromLeft;
     self.boardViewYCoordinate = self.navigationController.navigationBar.frame.size.height + (self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height - self.boardViewWidth) / 2;
     // calculate boardView height
-    self.boardViewHeight = [[BoardManager sharedBoardManager] amountOfRows] * self.boardViewWidth / [[BoardManager sharedBoardManager] amountOfFields];    
+    self.boardViewHeight = [[BoardManager sharedBoardManager] rows] * self.boardViewWidth / [[BoardManager sharedBoardManager] cols];
     // make boardView frame
     CGRect boardViewFrame = CGRectMake(self.boardViewXCoordinate, self.boardViewYCoordinate, self.boardViewWidth, self.boardViewHeight);
     // some initializations
-    UIImage* cellBackgroundImage = [UIImage imageNamed:[[[ThemeManager sharedThemeManager] currentTheme] cellBackgroundImageName]];
+    UIImage* cellBackgroundImage = [UIImage imageNamed:[[[ThemeManager sharedThemeManager] currentTheme] cellImageName]];
     self.freeSpaceBetweenCells = playViewControllerFreeSpaceBetweenBoardCells;
     // calculate height and width of a single cellView
-    self.cellViewWidth = (boardViewFrame.size.width - (([[BoardManager sharedBoardManager] amountOfFields] + 1) * playViewControllerFreeSpaceBetweenBoardCells)) / [[BoardManager sharedBoardManager] amountOfFields];
+    self.cellViewWidth = (boardViewFrame.size.width - (([[BoardManager sharedBoardManager] cols] + 1) * playViewControllerFreeSpaceBetweenBoardCells)) / [[BoardManager sharedBoardManager] cols];
     self.cellViewHeight = self.cellViewWidth;
     // create board
-    for (NSInteger rowIndex = 0; rowIndex < [[BoardManager sharedBoardManager] amountOfRows]; rowIndex++) {
-        for (NSInteger fieldIndex = 0; fieldIndex < [[BoardManager sharedBoardManager] amountOfFields]; fieldIndex++) {
+    for (NSInteger rowIndex = 0; rowIndex < [[BoardManager sharedBoardManager] rows]; rowIndex++) {
+        for (NSInteger fieldIndex = 0; fieldIndex < [[BoardManager sharedBoardManager] cols]; fieldIndex++) {
             // create frame of a single cell
             CGRect cellFrame = CGRectMake(boardViewFrame.origin.x + playViewControllerFreeSpaceBetweenBoardCells + fieldIndex * (playViewControllerFreeSpaceBetweenBoardCells + self.cellViewWidth), boardViewFrame.origin.y + playViewControllerFreeSpaceBetweenBoardCells + rowIndex * (playViewControllerFreeSpaceBetweenBoardCells + self.cellViewHeight), self.cellViewWidth, self.cellViewHeight);
             // create cell image view
             UIImageView* cellImageView = [[UIImageView alloc] initWithFrame:cellFrame];
             [cellImageView setImage:cellBackgroundImage];
-            [cellImageView setTag:(rowIndex * [[BoardManager sharedBoardManager] amountOfFields] + fieldIndex)];
+            [cellImageView setTag:(rowIndex * [[BoardManager sharedBoardManager] cols] + fieldIndex)];
             // create tap gesture recognizer
             UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cellImageViewAction:)];
             [tapRecognizer setNumberOfTouchesRequired:1];
@@ -152,16 +152,16 @@ static CGFloat delay = 0.01;
 
 -(void) ballImageViewAction:(id) sender {
     self.startPointIsChosen = YES;
-    NSInteger xCoordinate = [[sender view] tag] / ([[BoardManager sharedBoardManager] amountOfFields]);
-    NSInteger yCoordinate = [[sender view] tag] - ([[BoardManager sharedBoardManager] amountOfFields] * xCoordinate);
+    NSInteger xCoordinate = [[sender view] tag] / ([[BoardManager sharedBoardManager] cols]);
+    NSInteger yCoordinate = [[sender view] tag] - ([[BoardManager sharedBoardManager] cols] * xCoordinate);
     self.startPoint = CGPointMake(xCoordinate, yCoordinate);
     self.ballToMove = [sender view];
 }
 
 -(void) cellImageViewAction:(id) sender {
     if (self.startPointIsChosen) {
-        NSInteger xCoordinate = [[sender view] tag] / ([[BoardManager sharedBoardManager] amountOfFields]);
-        NSInteger yCoordinate = [[sender view] tag] - ([[BoardManager sharedBoardManager] amountOfFields] * xCoordinate);
+        NSInteger xCoordinate = [[sender view] tag] / ([[BoardManager sharedBoardManager] cols]);
+        NSInteger yCoordinate = [[sender view] tag] - ([[BoardManager sharedBoardManager] cols] * xCoordinate);
         self.destinationPoint = CGPointMake(xCoordinate, yCoordinate);
         // find path from start point to destination point
         NSMutableArray* pointsArrayFromSourceToDestination = [[BoardManager sharedBoardManager] pathFromSourcePoint:self.startPoint toDestinationPoint:self.destinationPoint];
@@ -225,9 +225,9 @@ static CGFloat delay = 0.01;
     self.arrayOfBallsToExplode = [[BoardManager sharedBoardManager] pointsOfBallsToExplodeStartingFromPoint:self.destinationPoint];
     if ([self.arrayOfBallsToExplode count] == 0) {
         // draw new balls on board
-        NSMutableArray* arrayOfUpcomingBalls = [[BoardManager sharedBoardManager] arrayOfUpcomingBallsWithAmountOfBalls:[[[[ThemeManager sharedThemeManager] currentTheme] ballBackgroundImageNamesArray] count]];
+        NSMutableArray* arrayOfUpcomingBalls = [[BoardManager sharedBoardManager] arrayOfUpcomingBallsWithAmountOfBalls:[[[[ThemeManager sharedThemeManager] currentTheme] ballImageNamesArray] count]];
         //if ([arrayOfUpcomingBalls count] == 0) {
-        if ([[BoardManager sharedBoardManager] amountOfUpcomingBalls] > ([[BoardManager sharedBoardManager] amountOfRows] * [[BoardManager sharedBoardManager] amountOfFields] - self.arrayOfBallViews.count)){
+        if ([[BoardManager sharedBoardManager] amountOfUpcomingBalls] > ([[BoardManager sharedBoardManager] rows] * [[BoardManager sharedBoardManager] cols] - self.arrayOfBallViews.count)){
             [self showGameResultViewController];
         } else {
             for (NSInteger index = 0; index < [arrayOfUpcomingBalls count]; index++) {
@@ -251,7 +251,7 @@ static CGFloat delay = 0.01;
 - (void)explodeBalls {
     for (NSInteger index = 0; index < [self.arrayOfBallsToExplode count]; index++) {
         CGPoint currentPoint = [[self.arrayOfBallsToExplode objectAtIndex:index] CGPointValue];
-        NSInteger tagValueByPoint = ((long)currentPoint.x * [[BoardManager sharedBoardManager] amountOfFields] + (long)currentPoint.y);
+        NSInteger tagValueByPoint = ((long)currentPoint.x * [[BoardManager sharedBoardManager] cols] + (long)currentPoint.y);
         for (NSInteger indexOfBall = 0; indexOfBall < [self.arrayOfBallViews count]; indexOfBall++) {
             if ([self.arrayOfBallViews[indexOfBall] tag] == tagValueByPoint) {
                 [self.arrayOfBallViews[indexOfBall] setHidden:YES];
@@ -273,7 +273,7 @@ static CGFloat delay = 0.01;
     // initialize backgroundImageView
     self.backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
     // set background image of main view
-    [self.backgroundImageView setImage:[UIImage imageNamed:[[[ThemeManager sharedThemeManager] currentTheme] mainViewBackgroundImageName]]];
+    [self.backgroundImageView setImage:[UIImage imageNamed:[[[ThemeManager sharedThemeManager] currentTheme] backgroundImageName]]];
     // add backgroundImageView to main view
     [self.view addSubview:self.backgroundImageView];
 }

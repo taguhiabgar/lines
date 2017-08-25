@@ -11,14 +11,18 @@
 
 @interface Theme : NSObject
 
-@property NSString* cellBackgroundImageName;
-@property NSMutableArray* ballBackgroundImageNamesArray;
-@property NSString* mainViewBackgroundImageName;
-@property NSString* themeTitle;
+@property NSString* cellImageName;
+@property NSMutableArray* ballImageNamesArray;
+@property NSString* backgroundImageName;
+@property NSString* title;
 @property UIColor* textsColor;
-@property UIColor* buttonsBackgroundColor;
+@property UIColor* buttonsColor;
 
 - (instancetype) init;
-- (void)setValuesWithCellBackgroundImageName:(NSString*)cellBackgroundImage andMainViewBackgroundImageName:(NSString*)mainViewBackgroundImage andThemeTitle:(NSString*)title andTextsColor:(UIColor*)textColor andButtonsBackgroundColor:(UIColor*)buttonBackgroundColor;
+- (void)setValuesBackgroundImageName:(NSString*)mainViewBackgroundImage
+                       cellImageName:(NSString*)cellBackgroundImage
+                          themeTitle:(NSString*)title
+                          textsColor:(UIColor*)textColor
+              buttonsBackgroundColor:(UIColor*)buttonBackgroundColor;
 
 @end

@@ -32,8 +32,8 @@
 
 - (instancetype)init {
     if(self = [super init]) {
-        self.amountOfRows = defaultAmountOfRows;
-        self.amountOfFields = defaultAmountOfFields;
+        self.rows = defaultAmountOfRows;
+        self.cols = defaultAmountOfFields;
         self.amountOfUpcomingBalls = defaultAmountOfUpcomingBalls;
         self.amountOfBallsToExplode = defaultAmountOfBallsToExplode;
         self.amountOfBallsWhenGameBegins = defaultAmountOfBallsWhenGameBegins;
@@ -74,8 +74,8 @@
         [array addObject:[NSValue valueWithCGPoint:point]];
         return array;
     }
-    NSInteger amountOfRows = [[BoardManager sharedBoardManager] amountOfRows];
-    NSInteger amountOfColumns = [[BoardManager sharedBoardManager] amountOfFields];    
+    NSInteger rows = [[BoardManager sharedBoardManager] rows];
+    NSInteger cols = [[BoardManager sharedBoardManager] cols];
     NSMutableArray* horizontal = [[NSMutableArray alloc] init];
     NSMutableArray* vertical = [[NSMutableArray alloc] init];
     NSMutableArray* firstDiagonal = [[NSMutableArray alloc] init];
@@ -91,7 +91,7 @@
     // horizontal (to right)
     newXCoordinate = point.x;
     newYCoordinate = point.y + 1;
-    while (newYCoordinate < amountOfColumns && [(self.matrix[newXCoordinate][newYCoordinate]) isEqualToNumber:self.matrix[(long)point.x][(long)point.y]]) {
+    while (newYCoordinate < cols && [(self.matrix[newXCoordinate][newYCoordinate]) isEqualToNumber:self.matrix[(long)point.x][(long)point.y]]) {
         [horizontal addObject:[NSValue valueWithCGPoint:CGPointMake(newXCoordinate, newYCoordinate)]];
         newYCoordinate++;
     }
@@ -105,7 +105,7 @@
     // vertical (to down)
     newXCoordinate = point.x + 1;
     newYCoordinate = point.y;
-    while (newXCoordinate < amountOfRows && [(self.matrix[newXCoordinate][newYCoordinate]) isEqualToNumber:self.matrix[(long)point.x][(long)point.y]]) {
+    while (newXCoordinate < rows && [(self.matrix[newXCoordinate][newYCoordinate]) isEqualToNumber:self.matrix[(long)point.x][(long)point.y]]) {
         [vertical addObject:[NSValue valueWithCGPoint:CGPointMake(newXCoordinate, newYCoordinate)]];
         newXCoordinate++;
     }
@@ -120,7 +120,7 @@
     // first diagonal (to down-right)
     newXCoordinate = point.x + 1;
     newYCoordinate = point.y + 1;
-    while (newYCoordinate < amountOfColumns && newXCoordinate < amountOfRows && [(self.matrix[newXCoordinate][newYCoordinate]) isEqualToNumber:self.matrix[(long)point.x][(long)point.y]]) {
+    while (newYCoordinate < cols && newXCoordinate < rows && [(self.matrix[newXCoordinate][newYCoordinate]) isEqualToNumber:self.matrix[(long)point.x][(long)point.y]]) {
         [firstDiagonal addObject:[NSValue valueWithCGPoint:CGPointMake(newXCoordinate, newYCoordinate)]];
         newXCoordinate++;
         newYCoordinate++;
@@ -128,7 +128,7 @@
     // second diagonal (to up-right)
     newXCoordinate = point.x - 1;
     newYCoordinate = point.y + 1;
-    while (newYCoordinate < amountOfColumns && newXCoordinate >= 0 && [(self.matrix[newXCoordinate][newYCoordinate]) isEqualToNumber:self.matrix[(long)point.x][(long)point.y]]) {
+    while (newYCoordinate < cols && newXCoordinate >= 0 && [(self.matrix[newXCoordinate][newYCoordinate]) isEqualToNumber:self.matrix[(long)point.x][(long)point.y]]) {
         [secondDiagonal addObject:[NSValue valueWithCGPoint:CGPointMake(newXCoordinate, newYCoordinate)]];
         newXCoordinate--;
         newYCoordinate++;
@@ -136,7 +136,7 @@
     // second diagonal (to down-left)
     newXCoordinate = point.x + 1;
     newYCoordinate = point.y - 1;
-    while (newYCoordinate >= 0 && newXCoordinate < amountOfRows && [(self.matrix[newXCoordinate][newYCoordinate]) isEqualToNumber:self.matrix[(long)point.x][(long)point.y]]) {
+    while (newYCoordinate >= 0 && newXCoordinate < rows && [(self.matrix[newXCoordinate][newYCoordinate]) isEqualToNumber:self.matrix[(long)point.x][(long)point.y]]) {
         [secondDiagonal addObject:[NSValue valueWithCGPoint:CGPointMake(newXCoordinate, newYCoordinate)]];
         newXCoordinate++;
         newYCoordinate--;
@@ -181,10 +181,10 @@
 {
     [self.matrix removeAllObjects];
     // fill matrix with zeroes
-    for (NSInteger rowIndex = 0; rowIndex < self.amountOfRows; ++rowIndex)
+    for (NSInteger rowIndex = 0; rowIndex < self.rows; ++rowIndex)
     {
         NSMutableArray* currentRow = [[NSMutableArray alloc] init];
-        for (NSInteger columnIndex = 0; columnIndex < self.amountOfFields; ++columnIndex)
+        for (NSInteger columnIndex = 0; columnIndex < self.cols; ++columnIndex)
             [currentRow addObject:[NSNumber numberWithInteger:0]];
         [self.matrix addObject:currentRow];
     }
@@ -253,8 +253,8 @@
 }
 
 - (NSMutableArray*)pathFromSourcePoint:(CGPoint)source toDestinationPoint:(CGPoint)destination {
-    NSInteger rows = [[BoardManager sharedBoardManager] amountOfRows];
-    NSInteger columns = [[BoardManager sharedBoardManager] amountOfFields];
+    NSInteger rows = [[BoardManager sharedBoardManager] rows];
+    NSInteger columns = [[BoardManager sharedBoardManager] cols];
     
     // create new matrix
     NSMutableArray* matrix = [[NSMutableArray alloc] init];

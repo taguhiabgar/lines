@@ -33,14 +33,12 @@
     UIColor* simpleThemeTextColor = [UIColor darkGrayColor];
     UIColor* chinaThemeTextColor = [UIColor darkGrayColor];
     UIColor* eastThemeTextColor = [UIColor darkGrayColor];
-    UIColor* cakeThemeTextColor = [UIColor magentaColor];
     UIColor* stylishThemeTextColor = [UIColor purpleColor];
     
     // define buttons background colors for each theme
     UIColor* simpleThemeButtonsBackgroundColor = [UIColor whiteColor];
     UIColor* chinaThemeButtonsBackgroundColor = [UIColor whiteColor];
     UIColor* eastThemeButtonsBackgroundColor = [UIColor whiteColor];
-    UIColor* cakeThemeButtonsBackgroundColor = [UIColor whiteColor];
     UIColor* stylishThemeButtonsBackgroundColor = [UIColor whiteColor];
     
     // create all themes
@@ -49,85 +47,58 @@
     // create "Simple" theme
     Theme* simpleTheme = [[Theme alloc] init];
     // define all balls of "Simple" theme
-    [[simpleTheme ballBackgroundImageNamesArray] addObject:@"Ball1"];
-    [[simpleTheme ballBackgroundImageNamesArray] addObject:@"Ball1"];
-    [[simpleTheme ballBackgroundImageNamesArray] addObject:@"Ball2"];
-    [[simpleTheme ballBackgroundImageNamesArray] addObject:@"Ball3"];
-    [[simpleTheme ballBackgroundImageNamesArray] addObject:@"Ball6"];
-    [[simpleTheme ballBackgroundImageNamesArray] addObject:@"Ball7"];
-    [[simpleTheme ballBackgroundImageNamesArray] addObject:@"Ball8"];
-    // setup all values for "Simple" theme
-    [simpleTheme setValuesWithCellBackgroundImageName:@"cell1" andMainViewBackgroundImageName:@"BackgroundBall2" andThemeTitle:@"Simple" andTextsColor:simpleThemeTextColor andButtonsBackgroundColor:simpleThemeButtonsBackgroundColor];
     
-    // -- "Cake" theme
-    // create "Cake" theme
-    Theme* cakeTheme = [[Theme alloc] init];
-    // define all balls of "Cake" theme
-    [[cakeTheme ballBackgroundImageNamesArray] addObject:@"Cake1"];
-    [[cakeTheme ballBackgroundImageNamesArray] addObject:@"Cake1"];
-    [[cakeTheme ballBackgroundImageNamesArray] addObject:@"Cake2"];
-    [[cakeTheme ballBackgroundImageNamesArray] addObject:@"Cake3"];
-    [[cakeTheme ballBackgroundImageNamesArray] addObject:@"Cake4"];
-    [[cakeTheme ballBackgroundImageNamesArray] addObject:@"Cake5"];
-    // setup all values for "Cake" theme
-    [cakeTheme setValuesWithCellBackgroundImageName:@"cell1" andMainViewBackgroundImageName:@"BackgroundCake7" andThemeTitle:@"Candies" andTextsColor:cakeThemeTextColor andButtonsBackgroundColor:cakeThemeButtonsBackgroundColor];
+    NSArray* simpleBallsArray = [[NSArray alloc] initWithObjects:@"Ball1", @"Ball2", @"Ball3", @"Ball4", @"Ball5", @"Ball6", nil];
+    [[simpleTheme ballImageNamesArray] addObjectsFromArray:simpleBallsArray];
+    // setup all values for "Simple" theme
+    [simpleTheme setValuesBackgroundImageName:@"BackgroundBall2"
+                                cellImageName:@"cell1"
+                                   themeTitle:@"Simple"
+                                   textsColor:simpleThemeTextColor
+                       buttonsBackgroundColor:simpleThemeButtonsBackgroundColor];
     
     // -- "China" theme
     // create "China" theme
     Theme* chinaTheme = [[Theme alloc] init];
     // define all balls of "China" theme
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China1"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China1"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China2"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China3"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China4"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China5"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China6"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China7"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China8"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China9"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China10"];
-    [[chinaTheme ballBackgroundImageNamesArray] addObject:@"China11"];
+    NSArray* chinaBallsArray = [[NSArray alloc] initWithObjects:@"China1", @"China2", @"China3", @"China4", @"China5", @"China6", @"China7", nil];
+    [[chinaTheme ballImageNamesArray] addObjectsFromArray:chinaBallsArray];
     // setup all values for "China" theme
-    [chinaTheme setValuesWithCellBackgroundImageName:@"cell1" andMainViewBackgroundImageName:@"BackgroundChina1" andThemeTitle:@"China" andTextsColor:chinaThemeTextColor andButtonsBackgroundColor:chinaThemeButtonsBackgroundColor];
+    [chinaTheme setValuesBackgroundImageName:@"BackgroundChina1"
+                               cellImageName:@"cell1"
+                                  themeTitle:@"China"
+                                  textsColor:chinaThemeTextColor
+                      buttonsBackgroundColor:chinaThemeButtonsBackgroundColor];
     
     // -- "East" theme
     // create "East" theme
     Theme* eastTheme = [[Theme alloc] init];
     // define all balls of "East" theme
-    [[eastTheme ballBackgroundImageNamesArray] addObject:@"East1"];
-    [[eastTheme ballBackgroundImageNamesArray] addObject:@"East1"];
-    [[eastTheme ballBackgroundImageNamesArray] addObject:@"East2"];
-    [[eastTheme ballBackgroundImageNamesArray] addObject:@"East3"];
-    [[eastTheme ballBackgroundImageNamesArray] addObject:@"East4"];
-    [[eastTheme ballBackgroundImageNamesArray] addObject:@"East5"];
-    [[eastTheme ballBackgroundImageNamesArray] addObject:@"East6"];
-    [[eastTheme ballBackgroundImageNamesArray] addObject:@"East7"];
-    [[eastTheme ballBackgroundImageNamesArray] addObject:@"East8"];
-    [[eastTheme ballBackgroundImageNamesArray] addObject:@"East9"];
+    NSArray* eastBallsArray = [[NSArray alloc] initWithObjects:@"East1", @"East2", @"East3", @"East4", @"East5", @"East6", @"East7", nil];
+    [[eastTheme ballImageNamesArray] addObjectsFromArray:eastBallsArray];
     // setup all values for "East" theme
-    [eastTheme setValuesWithCellBackgroundImageName:@"cell1" andMainViewBackgroundImageName:@"BackgroundEast1" andThemeTitle:@"East" andTextsColor:eastThemeTextColor andButtonsBackgroundColor:eastThemeButtonsBackgroundColor];
+    [eastTheme setValuesBackgroundImageName:@"BackgroundEast1"
+                              cellImageName:@"cell1"
+                                 themeTitle:@"East"
+                                 textsColor:eastThemeTextColor
+                     buttonsBackgroundColor:eastThemeButtonsBackgroundColor];
     
     // -- "Stylish" theme
     // create "Stylish" theme
     Theme* stylishTheme = [[Theme alloc] init];
     // define all balls of "Stylish" theme
-    [[stylishTheme ballBackgroundImageNamesArray] addObject:@"StylishBall2"];
-    [[stylishTheme ballBackgroundImageNamesArray] addObject:@"StylishBall2"];
-    [[stylishTheme ballBackgroundImageNamesArray] addObject:@"StylishBall3"];
-    [[stylishTheme ballBackgroundImageNamesArray] addObject:@"StylishBall5"];
-    [[stylishTheme ballBackgroundImageNamesArray] addObject:@"StylishBall11"];
-    [[stylishTheme ballBackgroundImageNamesArray] addObject:@"StylishBall12"];
-    [[stylishTheme ballBackgroundImageNamesArray] addObject:@"StylishBall16"];
+    NSArray* stylishBallsArray = [[NSArray alloc] initWithObjects:@"StylishBall1", @"StylishBall2", @"StylishBall3", @"StylishBall4", @"StylishBall5", @"StylishBall6", @"StylishBall7", nil];
+    [[stylishTheme ballImageNamesArray] addObjectsFromArray:stylishBallsArray];
     // setup all values for "Stylish" theme
-    [stylishTheme setValuesWithCellBackgroundImageName:@"cell1" andMainViewBackgroundImageName:@"BackgroundStylish4" andThemeTitle:@"Stylish" andTextsColor:stylishThemeTextColor andButtonsBackgroundColor:stylishThemeButtonsBackgroundColor];
+    [stylishTheme setValuesBackgroundImageName:@"BackgroundStylish4"
+                                 cellImageName:@"cell1"
+                                    themeTitle:@"Stylish"
+                                    textsColor:stylishThemeTextColor
+                        buttonsBackgroundColor:stylishThemeButtonsBackgroundColor];
     
     // --add all themes to the sharedManager
-    [[[ThemeManager sharedThemeManager] arrayOfThemes] addObject:simpleTheme];
-    [[[ThemeManager sharedThemeManager] arrayOfThemes] addObject:cakeTheme];
-    [[[ThemeManager sharedThemeManager] arrayOfThemes] addObject:chinaTheme];
-    [[[ThemeManager sharedThemeManager] arrayOfThemes] addObject:eastTheme];
-    [[[ThemeManager sharedThemeManager] arrayOfThemes] addObject:stylishTheme];
+    NSArray* themes = [[NSArray alloc] initWithObjects:stylishTheme, simpleTheme, eastTheme, chinaTheme, nil];
+    [[[ThemeManager sharedThemeManager] arrayOfThemes] addObjectsFromArray: themes];
     
     // --define which theme is default in the shared manager
     [[ThemeManager sharedThemeManager] setCurrentTheme:stylishTheme];

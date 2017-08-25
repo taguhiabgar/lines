@@ -92,7 +92,7 @@
 				3D2CBD6A1D62EE7D00138285 /* AppDelegate.m */,
 				3D2CBD721D62EE7D00138285 /* Assets.xcassets */,
 				3D2CBD771D62EE7D00138285 /* Info.plist */,
-				3DCA61111E41E05900A785A6 /* Views */,
+				3DCA61111E41E05900A785A6 /* storyboards */,
 				3DCA61101E41E04C00A785A6 /* Constants */,
 				3DCA610F1E41E04500A785A6 /* Models */,
 				3DCA610E1E41E03C00A785A6 /* Managers */,
@@ -162,13 +162,13 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
-		3DCA61111E41E05900A785A6 /* Views */ = {
+		3DCA61111E41E05900A785A6 /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				3D2CBD6F1D62EE7D00138285 /* Main.storyboard */,
 				3D2CBD741D62EE7D00138285 /* LaunchScreen.storyboard */,
 			);
-			name = Views;
+			name = storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

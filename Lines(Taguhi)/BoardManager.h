@@ -13,8 +13,8 @@
 
 + (id)sharedBoardManager;
 
-@property NSUInteger amountOfRows;
-@property NSUInteger amountOfFields;
+@property NSUInteger rows;
+@property NSUInteger cols;
 @property NSInteger amountOfUpcomingBalls;
 @property NSInteger amountOfBallsWhenGameBegins;
 @property NSInteger amountOfBallsToExplode;
